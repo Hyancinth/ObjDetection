@@ -365,9 +365,9 @@ def draw_boxes(image, boxes, labels, obj_thresh):
     return image      
 
 #main function
-def _main_():
-    weights_path = ""
-    image_path   = ""
+def main():
+
+    weights_path = "C:\\Users\\ethan\\Desktop\\E\\yolov3.weights"
 
     # set some parameters
     net_h, net_w = 416, 416
@@ -385,15 +385,22 @@ def _main_():
               "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
 
     # make the yolov3 model to predict 80 classes on COCO
-    yolov3 = make_yolov3_model()
+    print("Making Model")
+    Model = make_yolov3_model()
+    print("Model made")
 
     # load the weights trained on COCO into the model
     weight_reader = WeightReader(weights_path)
-    weight_reader.load_weights(yolov3)
+    weight_reader.load_weights(Model)
 
     #save model 
+    print("Saving Model")
+    Model.save("yolo3.h5", save_format = "h5")
+    print("Done saving")
 
     #don't need anything below
+   
+    '''
     # preprocess the image
     image = cv2.imread(image_path)
     image_h, image_w, _ = image.shape
@@ -418,3 +425,6 @@ def _main_():
  
     # write the image with bounding boxes to file
     cv2.imwrite(image_path[:-4] + '_detected' + image_path[-4:], (image).astype('uint8')) 
+    '''
+
+main()
