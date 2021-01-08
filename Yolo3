@@ -367,7 +367,7 @@ def draw_boxes(image, boxes, labels, obj_thresh):
 #main function
 def main():
 
-    weights_path = "C:\\Users\\ethan\\Desktop\\E\\yolov3.weights"
+    weights_path = "C:\\..." #insert your path - remember to use duplicate the \ in the path
 
     # set some parameters
     net_h, net_w = 416, 416
@@ -385,46 +385,17 @@ def main():
               "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
 
     # make the yolov3 model to predict 80 classes on COCO
-    print("Making Model")
+    print("\n[In Progress] Making Model")
     Model = make_yolov3_model()
-    print("Model made")
+    print("\n[Success] Model made")
 
     # load the weights trained on COCO into the model
     weight_reader = WeightReader(weights_path)
     weight_reader.load_weights(Model)
 
     #save model 
-    print("Saving Model")
+    print("\n[In Progress] Saving Model")
     Model.save("yolo3.h5", save_format = "h5")
-    print("Done saving")
-
-    #don't need anything below
-   
-    '''
-    # preprocess the image
-    image = cv2.imread(image_path)
-    image_h, image_w, _ = image.shape
-    new_image = preprocess_input(image, net_h, net_w)
-
-    # run the prediction
-    yolos = yolov3.predict(new_image)
-    boxes = []
-
-    for i in range(len(yolos)):
-        # decode the output of the network
-        boxes += decode_netout(yolos[i][0], anchors[i], obj_thresh, nms_thresh, net_h, net_w)
-
-    # correct the sizes of the bounding boxes
-    correct_yolo_boxes(boxes, image_h, image_w, net_h, net_w)
-
-    # suppress non-maximal boxes
-    do_nms(boxes, nms_thresh)     
-
-    # draw bounding boxes on the image using labels
-    draw_boxes(image, boxes, labels, obj_thresh) 
- 
-    # write the image with bounding boxes to file
-    cv2.imwrite(image_path[:-4] + '_detected' + image_path[-4:], (image).astype('uint8')) 
-    '''
+    print("\n[Success] Done saving")
 
 main()
